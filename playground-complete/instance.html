@@ -15,11 +15,26 @@
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
-    // var options = 
-    var vm = new Vue({
+    //변수에 객체를 담아 뷰인스턴스에 던지는 형태
+    // var options = {
+    //   el: '#app',//app이라는 아이디에 뷰인스턴스를 붙이겠다 선언
+    //   data: {
+    //     message: 'hih323i',
+    //   },
+    //   methods: {
+
+    //   },
+    // }
+    // var vm = new Vue(options);
+
+    //객체 리터럴 방식 (가독성이 더 조으다.)
+    var vm = new Vue({ //생성자()안에 들어가는 것은 객체표기법으로 정의
       el: '#app',//app이라는 아이디에 뷰인스턴스를 붙이겠다 선언
       data: {
-        message: 'hihi',
+        message: 'hih323i',
+      },
+      methods: {
+
       },
     });
   </script>
