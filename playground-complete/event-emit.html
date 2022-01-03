@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
 <body>
   <div id="app">
-    <p>{{ num }}</p>
     <!-- <app-header v-on:하위 컴포넌트에서 발생한 이벤트 이름="상위 컴포넌트의 메서드 이름"></app-header> -->
     <app-header v-on:pass="logText"></app-header>
-    <app-content v-on:increase="increaseNumber"></app-content>
+    <app-content v-on:add="addNum"></app-content>
+    {{ num }}
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -20,19 +20,20 @@
       template: '<button v-on:click="passEvent">click me</button>',
       methods: {
         passEvent: function() {
-          this.$emit('pass');
-        }
-      }
-    }
-    var appContent = {
-      template: '<button v-on:click="addNumber">add</button>',
-      methods: {
-        addNumber: function() {
-          this.$emit('increase');
+          this.$emit('pass'); //부모 컴포넌트에 이벤트 전달 $emit pass라는 이름의 이벤트를 전달한다.
         }
       }
     }
 
+    var appContent = {
+      template: '<button v-on:click="addNumber">add</button>',
+      methods: {
+        addNumber: function() {
+          this.$emit('add');
+        }
+      }
+    }
+    
     var vm = new Vue({
       el: '#app',
       components: {
@@ -43,14 +44,14 @@
         logText: function() {
           console.log('hi');
         },
-        increaseNumber: function() {
-          this.num = this.num + 1;
-        }
+        addNum: function() {
+          this.num ++; //this 자세하게 보자 https://www.w3schools.com/js/js_this.asp 
+        },
       },
       data: {
-        num: 10
+        num: 10,
       }
-    });
+    })
   </script>
 </body>
 </html>
