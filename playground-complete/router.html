@@ -7,45 +7,53 @@
   <title>Document</title>
 </head>
 <body>
+  <!-- @ 라우터. 페이지 이동을 위한 공식 라이브러리(vue-router.js) -->
   <div id="app">
     <div>
-      <router-link to="/login">Login</router-link>
-      <router-link to="/main">Main</router-link>
+      <router-link to="/login">login</router-link>
+      <router-link to="/main">main</router-link>
     </div>
+    <!-- 뷰인스턴스에 라우터 인스턴스를 연결해야만 사용할수 있는 태그, 실질적으로 라우터에 따른 컴포넌트가 보여질 영역을 지정 -->
     <router-view></router-view>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- 연습이니 CDN 방식으로 임포트 -->
   <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
   <script>
     var LoginComponent = {
-      template: '<div>login</div>'
+      template: '<div>LoginComponent</div>'
     }
     var MainComponent = {
-      template: '<div>main</div>'
+      template: '<div>MainComponent</div>'
     }
 
+    //각각의 인스턴스 생성
     var router = new VueRouter({
-      // 페이지의 라우팅 정보      
+      // 모드에 히스토리를 넣으면 해쉬가 없어짐
+      //http://127.0.0.1:5500/playground-complete/router.html#/login
+      //http://127.0.0.1:5500/playground-complete/router.html/login
+      mode: 'history',
+      // 페이지의 라우팅 정보를 routes속성에 담는다.
       routes: [
-        // 로그인 페이지 정보
+        //배열안에 페이지마다 객체로 정의한다
         {
-          // 페이지의 url
+          //페이지의 유알엘 
           path: '/login',
-          // name: 'login',
-          // 해당 url에서 표시될 컴포넌트
-          component: LoginComponent
+          name: 'login',
+          //해당 유알엘에서 표시될 컴포넌트, 단수로 표현
+          component: LoginComponent,
         },
-        // 메인 페이지 정보
         {
           path: '/main',
-          component: MainComponent
-        }
+          component: MainComponent,
+        },
       ]
     });
 
     new Vue({
       el: '#app',
+      //라우터 할당
       router: router,
     });
   </script>
