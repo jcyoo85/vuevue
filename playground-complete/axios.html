@@ -7,6 +7,8 @@
   <title>Axios</title>
 </head>
 <body>
+  <!-- @ axios. 뷰에서 권고하고 있는 HTTP통신 라이브러리 -->
+  <!-- https://github.com/axios/axios -->
   <div id="app">
     <button v-on:click="getData">get user</button>
     <div>
@@ -15,27 +17,42 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- axios CDN -->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script>
     new Vue({
       el: '#app',
       data: {
-        users: []
+        users: [],
       },
       methods: {
-        getData: function() { 
+        getData: function() {
+          //this scope 가 then 안에 있는 this와 다름
+          console.log(this);
+          //갱신이슈로 아래와 같이 변수에 담음
           var vm = this;
           axios.get('https://jsonplaceholder.typicode.com/users/')
-            .then(function(response) {
-              console.log(response.data);
-              vm.users = response.data;
-            })
-            .catch(function(error) {
-              console.log(error);
-            });
+          //성공하면 then 진입
+          .then(function(response) {
+            console.log(this);
+            console.log(response.data);
+            vm.users = response.data;
+          })
+          //실패하면 catch 진입
+          .catch(function(error) {
+            console.log(error);
+          })
         }
       }
     })
   </script>
 </body>
 </html>
+
+<!-- 
+자바스크립트 비동기 처리 패턴
+1. callback
+2. promise
+3. promise + generator
+4. async $ await
+-->
