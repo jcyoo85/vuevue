@@ -7,22 +7,23 @@
   <title>Document</title>
 </head>
 <body>
+  <!-- 템플릿 문법 강의 -->
   <div id="app">
+    {{ str }}
     <p v-bind:id="uuid" v-bind:class="name">{{ num }}</p>
-    <!-- <p id="abc1234">{{ num }}</p> -->
     <p>{{ doubleNum }}</p>
-    <div v-if="loading">
-      Loading...
-    </div>
-    <div v-else>
-      test user has been logged in
-    </div>
-    <div v-show="loading">
-      Loading...
-    </div>
-    <!-- TODO: 인풋 박스를 만들고 입력된 값을 p 태그에 출력해보세요 -->
-    <input type="text" v-model="message">
+    
+    
+    <!-- v-if, v-show 차이점 v-if는 돔까지 제거한다 -->
+    <div v-if="loading">Loading...</div>
+    <div v-else>text user has been logged in</div>
+    <div v-show="loading">Loading...</div>
+    
+    
+    <!-- todo:인풋박스를 만들고 입력된값을 출력 -->
+    <input type="text" v-model="message"/>
     <p>{{ message }}</p>
+    
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -30,12 +31,14 @@
     new Vue({
       el: '#app',
       data: {
+        str: 'hi',
         num: 10,
-        uuid: 'abc1234',
+        uuid: 'aaaaa',
         name: 'text-blue',
         loading: true,
-        message: ''
+        message: '',
       },
+      //계산된 속성
       computed: {
         doubleNum: function() {
           return this.num * 2;
@@ -43,5 +46,8 @@
       }
     })
   </script>
+  <style>
+    .text-blue {color:blue;}
+  </style>
 </body>
 </html>

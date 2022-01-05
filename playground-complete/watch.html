@@ -7,6 +7,7 @@
   <title>Document</title>
 </head>
 <body>
+  <!-- watch 알아보자 -->
   <div id="app">
     {{ num }}
     <button v-on:click="addNum">increase</button>
@@ -19,6 +20,7 @@
       data: {
         num: 10
       },
+      //데이터를 대상으로 넣을수 있다, 데이터의 변화를 감지함
       watch: {
         num: function() {
           this.logText();

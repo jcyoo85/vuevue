@@ -7,6 +7,8 @@
   <title>Document</title>
 </head>
 <body>
+  <!-- watch 와 computed의 차이점 https://vuejs.org/v2/guide/computed.html#ad 공식문서 -->
+  <!-- watch 보다는 computed를 권장한다. -->
   <div id="app">
     {{ num }}
   </div>
@@ -18,20 +20,23 @@
       data: {
         num: 10
       },
+      //computed는 대부분의 validation이나 간단한 텍스트 연산...
       computed: {
         doubleNum: function() {
           return this.num * 2;
         }
       },
+      //무거운로직 데이터 핸들링등.... 
       watch: {
+        //와치는 두개의 인자값을 기본적으로 가지고 있음 이전값, 갱신된값
         num: function(newValue, oldValue) {
           this.fetchUserByNumber(newValue);
         }
       },
       methods: {
         fetchUserByNumber: function(num) {
-          // console.log(num);
-          axios.get(num);
+          console.log(num);
+          // axios.get(num);
         }
       }
     });

@@ -13,6 +13,10 @@
 </head>
 <body>
   <div id="app">
+    <!-- isError가 true일때 warning 클래스 반영 false이면 미반영 -->
+    <!-- <p v-bind:class="{ warning: isError }">Hello</p> -->
+
+    <!-- 아래예시는 컴퓨티드 반환값으로 처리 -->
     <p v-bind:class="errorTextColor">Hello</p>
   </div>
   
@@ -21,7 +25,7 @@
     new Vue({
       el: '#app',
       data: {
-        // cname: 'blue-text',
+        cname: 'blue-text',
         isError: false
       },
       computed: {
@@ -31,6 +35,8 @@
           // } else {
           //   return null;
           // }
+
+          //삼항연산자 
           return this.isError ? 'warning' : null;
         }
       }
